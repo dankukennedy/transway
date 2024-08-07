@@ -5,25 +5,24 @@ define('BD_USER','root');
 define('BD_PASSWORD','');
 define('BD_DATABASE','transway');
 
-
 include_once('DatabaseConnection.php');
+$db=new DatabaseConnection;
 
-$db = new DatabaseConnection;
-//include('codes/authentication_code.php');
+include('../code/authentication_code.php');
 
 function base_url($slug)
 {
-    echo SITE_URL.$slug; 
+    echo SITE_URL.$slug;
 }
 
 function redirect($message,$page)
 {
- $redirectTo = SITE_URL.$page; 
+ $redirectTo = SITE_URL.$page;
 
  $_SESSION['message']="$message";
   header("Location: $redirectTo");
   exit(0);
- } 
+ }
 
 function validateInput($dbcon,$input)
 {

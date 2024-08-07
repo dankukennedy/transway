@@ -1,12 +1,13 @@
 <?php 
-include_once('controllers/RegisterController.php');
-include_once('controllers/loginController.php');
-include_once('controllers/changePasswordController.php');
-include_once('controllers/UpdateController.php');
+
+include_once('../controllers/RegisterController.php');
+include_once('../controllers/loginController.php');
+include_once('../controllers/changePasswordController.php');
+include_once('../controllers/UpdateController.php');
 
 $auth = new loginController;
 
-//updating Applicant recods
+//updating Applicant records
 if(isset($_POST['updateProfile']))
 {
     $id = validateInput($db->conn, $_POST['user_id']);

@@ -1,11 +1,10 @@
-
 <?php
 class loginController
 {
     public function __construct(){
         $db = new DatabaseConnection;
-        $this->conn=$db->conn;
-     }
+        $this-> conn = $db->conn;
+       }
 
         public function applicantAccount($email)
          {
@@ -67,7 +66,7 @@ class loginController
 
 
     private function applicantAuthentication($data)
-    {
+     {
         $_SESSION['authenticated'] = true;
         //$_SESSION['auth_role']= $data['role_as'];
         $_SESSION['auth_user']=[

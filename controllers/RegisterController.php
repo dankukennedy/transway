@@ -124,11 +124,11 @@ class RegisterController{
     public function phoneNumberFormat($number)
     {
         //Allow only Digits,Remove all other characters.
-        $number=preg_replace("/[^\d]/","",$number);
+        $number = preg_replace("/[^\d]/","",$number);
         //get the lenght
-        $lenght_of_number=strlen($number);
+        $lenght_of_number = strlen($number);
         //if contact;
-    if($lenght_of_number==10)
+    if($lenght_of_number == 10)
       {
         return true;
       }
@@ -145,7 +145,7 @@ class RegisterController{
         //get the lenght
         $lenght_of_studentId=strlen($studentId);
         //if student number is equal to 10;
-    if($lenght_of_studentId==10)
+    if($lenght_of_studentId == 10)
       {
         return true;
       }

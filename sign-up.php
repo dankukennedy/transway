@@ -14,8 +14,8 @@
                 <input type="number" name="name" placeholder="Student ID No." required>
                 <input type="email" name="email" placeholder="Eg. kwame@gmail.com" required>
                 <input type="number" name="number" placeholder="eg 0240000000" required>
-                <input type="text" name="password" placeholder="Password" required>
-                <input type="text" name="repassword" placeholder="Confirm Password" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="repassword" placeholder="Confirm Password" required>
                 <button  type="submit" name="register" >Register</button>
                 <div class="links">
                     <span><a href="./admin">Staff Login</a></span>

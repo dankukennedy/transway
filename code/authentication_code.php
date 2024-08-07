@@ -174,7 +174,7 @@ if(isset($_POST['login_staff']))
 }
 
 //Registering Applicant
-if(isset($_POST['register_applicant']))
+if(isset($_POST['register']))
 {
     $email = validateInput($db->conn, $_POST['email']);
     $number = validateInput($db->conn, $_POST['number']);

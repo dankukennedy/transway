@@ -19,7 +19,7 @@ class RegisterController{
     //register new Applicant
     public function applicantRegistration($studentId,$email,$password,$number)
     {
-        $register_query="INSERT INTO applicant(studentId,email,password,number) VALUES('$studentId','$email','$password','$number')";
+        $register_query="INSERT INTO applicants(studentId,email,password,number) VALUES('$studentId','$email','$password','$number')";
         $result = $this->conn->query($register_query);
         return $result;
     }

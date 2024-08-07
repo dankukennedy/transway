@@ -1,0 +1,462 @@
+@import url("https://fonts.cdnfonts.com/css/mona-sans");
+.landing-page {
+  font-family: "Mona-Sans", sans-serif;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.landing-page .land-page {
+  width: 30%;
+  margin: auto;
+}
+@media (max-width: 992px) {
+  .landing-page .land-page {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .landing-page .land-page {
+    width: 70%;
+  }
+}
+@media (max-width: 540px) {
+  .landing-page .land-page {
+    width: 80%;
+  }
+}
+.landing-page .land-page .login-form {
+  width: 100%;
+}
+.landing-page .land-page .login-form .picture {
+  border-radius: 100%;
+  width: 110px;
+  height: 110px;
+  margin: auto;
+}
+.landing-page .land-page .login-form .picture img {
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.landing-page .land-page .login-form h3 {
+  text-align: center;
+}
+.landing-page .land-page .login-form form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+.landing-page .land-page .login-form form input {
+  font-family: "Mona-Sans", sans-serif;
+  background-color: rgba(218, 218, 218, 0.323);
+  border: none;
+  width: 100%;
+  padding: 20px 0;
+  text-indent: 10px;
+  outline: 1px solid rgba(142, 142, 142, 0.1215686275);
+}
+.landing-page .land-page .login-form form button {
+  font-family: "Mona-Sans", sans-serif;
+  background-color: #385a64;
+  color: #fff;
+  border: none;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.landing-page .land-page .login-form form .links {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+@media (max-width: 540px) {
+  .landing-page .land-page .login-form form .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+.landing-page .land-page .login-form form .links span {
+  width: 50%;
+}
+@media (max-width: 540px) {
+  .landing-page .land-page .login-form form .links span {
+    width: 100%;
+  }
+}
+.landing-page .land-page .login-form form .links span a {
+  font-size: 13px;
+  color: #000;
+  line-height: 24px;
+  text-decoration: none;
+}
+.landing-page .land-page .login-form form .links span a span {
+  color: red;
+}
+
+.sdashboard {
+  font-family: "Mona-Sans", sans-serif;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.sdashboard .sidebar-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.sdashboard .sidebar-content .sidebar {
+  background-color: #385a64;
+  color: #fff;
+  width: 18%;
+  height: 100%;
+}
+.sdashboard .sidebar-content .sidebar .sidebar-info {
+  width: 100%;
+  margin: auto;
+  padding: 30px 0;
+}
+.sdashboard .sidebar-content .sidebar .sidebar-info .title {
+  width: 90%;
+  margin: auto;
+  font-size: 11px;
+}
+.sdashboard .sidebar-content .sidebar .sidenav {
+  width: 100%;
+  margin-top: 50px;
+}
+.sdashboard .sidebar-content .sidebar .sidenav nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.sdashboard .sidebar-content .sidebar .sidenav nav a {
+  width: 100%;
+  margin: auto;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 15px 0;
+  text-decoration: none;
+  text-indent: 20px;
+}
+.sdashboard .sidebar-content .sidebar .sidenav nav a.active {
+  background-color: #2b464e;
+}
+.sdashboard .sidebar-content .sidebar .sidenav nav a:hover {
+  background-color: #2b464e;
+}
+.sdashboard .sidebar-content .sidebar .sidenav nav button {
+  font-family: "Mona-Sans", sans-serif;
+  background: none;
+  color: #fff;
+  width: 100%;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 15px 0;
+  text-align: left;
+  text-indent: 20px;
+  cursor: pointer;
+}
+.sdashboard .sidebar-content .sidebar .sidenav nav button:hover {
+  background-color: #2b464e;
+}
+.sdashboard .sidebar-content .main-content {
+  background-color: #f8f7f4;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+.sdashboard .sidebar-content .main-content .header {
+  background-color: #fff;
+  width: 100%;
+  padding: 10px 0;
+}
+.sdashboard .sidebar-content .main-content .header .header-content {
+  width: 90%;
+  margin: auto;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+.sdashboard .sidebar-content .main-content .header .header-content .profile-pic {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+.sdashboard .sidebar-content .main-content .header .header-content .profile-pic img {
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.sdashboard .sidebar-content .main-content .dashboard-analytics {
+  width: 90%;
+  margin: 50px auto 0;
+  margin-bottom: 80px;
+  padding: 10px 0;
+}
+.sdashboard .sidebar-content .main-content .dashboard-analytics .analysis {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.sdashboard .sidebar-content .main-content .dashboard-analytics .analysis .data {
+  background-color: #fff;
+  width: 100%;
+}
+.sdashboard .sidebar-content .main-content .dashboard-analytics .analysis .data .data-info {
+  width: 90%;
+  margin: auto;
+  padding: 10px 0;
+}
+.sdashboard .sidebar-content .main-content .dashboard-analytics .analysis .data .data-info h3 {
+  text-align: right;
+}
+.sdashboard .sidebar-content .main-content .dashboard-analytics .analysis .data .data-info p {
+  font-size: 13px;
+  text-align: right;
+}
+.sdashboard .sidebar-content .main-content .content {
+  background-color: #fff;
+  width: 90%;
+  margin: 50px auto 0;
+  margin-bottom: 80px;
+  padding: 10px 0;
+}
+.sdashboard .sidebar-content .main-content .content .content-details {
+  width: 95%;
+  margin: auto;
+}
+.sdashboard .sidebar-content .main-content .content .content-details .title {
+  border-bottom: 1px solid rgba(207, 207, 207, 0.631372549);
+}
+.sdashboard .sidebar-content .main-content .content .content-details form {
+  width: 100%;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info {
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 30px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .pro-pic {
+  border: 1px solid rgba(207, 207, 207, 0.631372549);
+  width: 180px;
+  height: 180px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .pro-pic img {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .review-info {
+  width: 80%;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .review-info .questions {
+  margin-bottom: 30px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .review-info .questions h4 {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .review-info .questions .answers {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  font-size: 14px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .review-info .questions .answers span {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .info .top {
+  font-size: 13px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .info .top h5 {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .info .bottom {
+  font-size: 13px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .info .bottom p {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .propic-info .info .bottom p span {
+  color: red;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info {
+  width: 100%;
+  margin: 50px 0;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos .inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos .inputs label {
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos .inputs label span {
+  color: red;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos .inputs input {
+  font-family: "Mona-Sans", sans-serif;
+  background-color: rgba(218, 218, 218, 0.323);
+  border: none;
+  width: 100%;
+  padding: 15px 0;
+  text-indent: 10px;
+  outline: 1px solid rgba(142, 142, 142, 0.1215686275);
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos .inputs select {
+  font-family: "Mona-Sans", sans-serif;
+  background-color: rgba(218, 218, 218, 0.323);
+  border: none;
+  width: 100%;
+  padding: 15px 0;
+  text-indent: 10px;
+  outline: 1px solid rgba(142, 142, 142, 0.1215686275);
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos .inputs p {
+  font-size: 13px;
+  line-height: 22px;
+  color: red;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos .inputs p span {
+  font-weight: 700;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos:nth-child(2) {
+  margin-top: 20px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos:nth-child(3) {
+  margin-top: 20px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos:nth-child(4) {
+  margin-top: 20px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .infos:nth-child(5) {
+  margin-top: 20px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .add-more {
+  border: 1px dotted #385a64;
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .add-more button {
+  font-family: "Mona-Sans", sans-serif;
+  border: none;
+  background-color: #385a64;
+  color: #fff;
+  width: 20%;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .actions {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 10px;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .actions button:nth-child(1) {
+  background-color: #28a745;
+  color: #fff;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .actions button {
+  font-family: "Mona-Sans", sans-serif;
+  border: none;
+  width: 10%;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.sdashboard .sidebar-content .main-content .content .content-details form .bio-info .actions button:last-child {
+  background-color: #385a64;
+  color: #fff;
+}/*# sourceMappingURL=styles.css.map */

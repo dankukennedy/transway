@@ -7,7 +7,6 @@ class changePasswordController
     $this->conn=$db->conn;
  }
 
-
 //Checking where both password matches.
 public function confirmPassword($newPassword,$rePasswaord)
 {

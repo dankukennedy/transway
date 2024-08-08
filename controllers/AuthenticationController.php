@@ -95,6 +95,6 @@ class AuthenticationController
 
  }
 
-$authenticated=new AuthenticationController;
+ $authenticated=new AuthenticationController;
 
 ?>

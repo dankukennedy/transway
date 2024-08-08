@@ -1,11 +1,11 @@
 <?php 
-
-include_once('../controllers/RegisterController.php');
-include_once('../controllers/loginController.php');
-include_once('../controllers/changePasswordController.php');
-include_once('../controllers/UpdateController.php');
+include_once('controllers/RegisterController.php');
+include_once('.controllers/loginController.php');
+include_once('controllers/changePasswordController.php');
+include_once('controllers/UpdateController.php');
 
 $auth = new loginController;
+
 
 //updating Applicant records
 if(isset($_POST['updateProfile']))
@@ -25,7 +25,8 @@ if(isset($_POST['updateProfile']))
         {
           redirect(" <h5 style='color: red';> Profile Update  fails </h5>","editProfile.php");
         }
-}
+
+  }
 
 //Updating staff record
 if(isset($_POST['updateStaffProfile']))
@@ -46,6 +47,7 @@ if(isset($_POST['updateStaffProfile']))
         }
 
 }
+
 
 //Reset Password Applicant
 if(isset($_POST['resetPassword']))
@@ -133,13 +135,13 @@ if(isset($_POST['login']))
 {
   $email=validateInput($db->conn, $_POST['email']);
   $password=validateInput($db->conn, $_POST['password']);
-  $checkLogin=$auth->userLogin($email,$password);
+  $checkLogin=$auth->applicantLogin($email,$password);
     if($checkLogin)
    {
       redirect(" <h5 style='color: green';> Logged in Successfully !!!</h5>","dashboard.php");
    }    else
      {
-      $checkAccount = $auth->userAccount($email);
+      $checkAccount = $auth->applicantAccount($email);
       if ($checkAccount){
              redirect("<h5 style='color: orange';>Please You dont Have an Account Create one !!!</h5>","login.php");
          }
@@ -162,7 +164,7 @@ if(isset($_POST['login_staff']))
       redirect(" <h5 style='color: green';> Logged in Successfully !!!</h5>","admin/dashboard.php");
    }    else
      {
-      $checkAccount=$auth->AuthStaffDetail($staffId);
+      $checkAccount=$auth->staffAccount($staffId);
       if ($checkAccount){
              redirect("<h5 style='color: orange';>Please You dont Have an Account Create one !!!</h5>","admin/index.php");
          }
@@ -174,8 +176,10 @@ if(isset($_POST['login_staff']))
 
 }
 
+
+
 //Registering Applicant
-if(isset($_POST['register']))
+if(isset($_POST['signup']))
 {
     $email = validateInput($db->conn, $_POST['email']);
     $number = validateInput($db->conn, $_POST['number']);
@@ -266,6 +270,7 @@ if(isset($_POST['register']))
            redirect("<h4 style='color: orange;'>Password and Re-type Password didn't match!!!</h4>","register.php");
          }
 }
+
 
 
 

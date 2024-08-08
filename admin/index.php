@@ -12,7 +12,7 @@
             <?php  include('../includes/message.php'); ?>
             <form action="" method ="POST">
                 <input type="text" name="staffId" placeholder="Staff ID" required>
-                <input type="text" name="pin"placeholder="Pin" required>
+                <input type="password" name="pin"placeholder="Pin" required>
                 <button>Login</button>
                 <div class="links">
                 <span> <a href="../index.php">Student Login</a></span>

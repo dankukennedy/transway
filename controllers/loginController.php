@@ -1,14 +1,16 @@
 <?php
 class loginController
 {
-    public function __construct(){
-        $db = new DatabaseConnection;
-        $this-> conn = $db->conn;
-       }
+  
+  public function __construct(){
+    $db = new DatabaseConnection;
+    $this-> conn = $db->conn;
+
+}
 
         public function applicantAccount($email)
          {
-              $checkLogin = "SELECT * FROM applicant WHERE email ='$email' LIMIT 1";
+              $checkLogin = "SELECT * FROM applicants WHERE email ='$email' LIMIT 1";
               $result = $this->conn->query($checkLogin);
                 if($result->num_rows < 1)
                   {
@@ -27,7 +29,7 @@ class loginController
         }
 
     public function applicantLogin($email,$password){
-      $userLogin="SELECT * FROM applicant WHERE email='$email' LIMIT 1";
+      $userLogin="SELECT * FROM applicants WHERE email='$email' LIMIT 1";
       $result = $this->conn->query($userLogin);
       if($result->num_rows > 0){
         if($data = $result->fetch_assoc()){

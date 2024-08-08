@@ -6,4 +6,5 @@
     <title>Transcript Request System</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>

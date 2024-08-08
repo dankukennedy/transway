@@ -10,13 +10,13 @@
             </div>
             <h3>Transcript Request System</h3>
             <?php  include('includes/message.php'); ?>
-            <form action="" method ="POST">
+            <form action ="./code/authentication_code.php" method="POST">
                 <input type="number" name="name" placeholder="Student ID No." required>
                 <input type="email" name="email" placeholder="Eg. kwame@gmail.com" required>
                 <input type="number" name="number" placeholder="eg 0240000000" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="password" name="repassword" placeholder="Confirm Password" required>
-                <button  type="submit" name="register" >Register</button>
+                <button  type="submit" name="signup" >Register</button>
                 <div class="links">
                     <span><a href="./admin">Staff Login</a></span>
                     <span><a href="index.php">Already have an account? <span>Login</span></a></span>

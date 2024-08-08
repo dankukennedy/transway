@@ -1,3 +1,11 @@
+<?php 
+include('config/app.php');
+
+include_once('controllers/AuthenticationController.php');
+$authenticated=new AuthenticationController;
+$data = $authenticated->authUserDetail();
+?>
+
 <div class="sidenav">
                     <nav>
                         <a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active': '' ?>">Home</a>

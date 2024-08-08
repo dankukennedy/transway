@@ -5,10 +5,11 @@ define('BD_USER','root');
 define('BD_PASSWORD','');
 define('BD_DATABASE','transway');
 
+define('SITE_URL','http://127.0.0.1/transway');
+
 include_once('DatabaseConnection.php');
 $db=new DatabaseConnection;
-
-include('../code/authentication_code.php');
+include('code/authentication_code.php');
 
 function base_url($slug)
 {

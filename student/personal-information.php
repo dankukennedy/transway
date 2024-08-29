@@ -1,4 +1,11 @@
 <?php $current_page = basename($_SERVER['PHP_SELF']); ?>
+<?php include('../config/app.php');
+
+include_once('../controllers/AuthenticationController.php');
+include_once('../controllers/PersonalController.php');
+$authenticated=new AuthenticationController;
+$data = $authenticated->authUserDetail();
+?>
 
 <?php include "../includes/stu-header.php" ?>
 
@@ -7,7 +14,7 @@
         <div class="sidebar">
             <div class="sidebar-info">
                 <div class="title">
-                    <h2>Student Transways</h2>
+                    <h4>Student Transways</h4>
                 </div>
 
                 <?php include "sidenav.php" ?>
@@ -16,9 +23,15 @@
         </div>
         <div class="main-content">
             <div class="header">
-                <div class="header-content">
-                    <span>Welcome Kwame</span>
-                    <div class="profile-pic">
+            <div class="header-content" style="display: flex; justify-content: space-between;">
+                    <span>Email: <?= $_SESSION['auth_user']['user_email'] ?></span>
+                     <span ></span><span >&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
+                     <span >&nbsp;&nbsp;&nbsp;</span><span >&nbsp;&nbsp;&nbsp;</span>
+                     <span >&nbsp;&nbsp;&nbsp;</span><span >&nbsp;&nbsp;&nbsp;</span>
+                     <span >&nbsp;&nbsp;&nbsp;</span><span >&nbsp;&nbsp;&nbsp;</span>
+                     <span >&nbsp;&nbsp;&nbsp;</span><span >&nbsp;&nbsp;&nbsp;</span>
+                     <span style="float:right;">Student ID: <?= $_SESSION['auth_user']['user_studentId'] ?></span>
+                     <div class="profile-pic">
                         <img src="../images/stud.JPG" alt="">
                     </div>
                 </div>
@@ -27,12 +40,94 @@
                 <div class="content-details">
                     <div class="title">
                         <h5>Personal Information</h5>
+                        <?php  include('../includes/psms.php'); ?>
                     </div>
-                    <form action="#">
+                    <?php
+                      $studentUserId = $_SESSION['auth_user']['user_studentId'];
+                         $personal = new PersonalController;
+                         $result = $personal->Index($studentUserId);
+
+                         $row = $result ? $result[0] : null;
+                         
+                       ?>
+                    <form id="form" action="../code/personal_code.php" enctype="multipart/form-data" method="POST">
                         <div class="propic-info">
                             <div class="pro-pic">
+                            <?php
+                           $id=$data['id'];
+                          $image=$data['profileImg'];
+                           ?>
+                           <?php if(empty($image))
+                                    {   ?>
                                 <img src="../images/stud.JPG" alt="">
-                            </div>
+                                <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                            <img src="../files/<?=$data['profileImg'] ?>" alt="..."><br>
+                                        <?php 
+                                    }   
+                               ?>
+                         </div>
+                                  
+                         
+                         <script type="text/javascript">
+                                  document.getElementById("image").onchange=function(){
+                                    document.getElementById('form').submit();
+                                  }
+                       </script>
+
+                         <?php
+                                 if(isset($_FILES['image']['name']))
+                                    {
+                                         // print_r($_FILES);
+                                        $id=$_POST['id'];
+                                        $name=$_POST['name'];
+
+
+                                        $imageName=$_FILES['image']['name'];
+                                        $imageSize=$_FILES['image']['size'];
+                                        $tmpName=$_FILES['image']['tmp_name'];
+
+                                        $validImageExtension=['jpg','jpeg','png'];
+                                        $imageExtension=explode('.',$imageName);
+                                        $imageExtension=strtolower(end($imageExtension));
+
+                                        if(!in_array($imageExtension,$validImageExtension))
+                                        {
+                                          echo " <script>
+                                          alert('invalid image Extension');
+                                          document.location.href='personal-information.php';
+                                          </script>";
+                                        } 
+                                        elseif($imageSize>1200000)
+                                            {
+                                                echo "  <script>
+                                          alert('invalid image too Large');
+                                          document.location.href='personal-information.php';
+                                          </script>";
+                                            }
+                                             else
+                                             {
+                                                $newImageName=$imageName."-".date("Y.m.d")."-".date("h.i.sa");
+                                                $newImageName.=".".$imageExtension;
+                                                $managerUpdateQuery=" UPDATE personal SET profileImg='$newImageName'  WHERE id='$id' ";
+                                                $result=$db->conn->query($managerUpdateQuery);
+                                               
+                                                 move_uploaded_file($tmpName,'../files/'.$newImageName);
+                                                 echo "  <script>
+                                                 alert('Profile Image Successfully Updated');
+                                                 document.location.href='personal-information.php';
+                                                 </script>";
+                                                 if($result){
+                                                    return true;
+                                                }
+                                             }
+
+                                    }
+                                 
+                                    ?> 
                             <div class="info">
                                 <div class="top">
                                     <h5>Image Requirements:</h5>
@@ -42,36 +137,42 @@
                                 </div>
                                 <div class="bottom">
                                     <p>Passport Picture <span>*</span>:</p>
-                                    <input type="file">
+                                    <input type="hidden" name="id" value=" <?= $id; ?> " />
+                                    <input type="hidden" name="id" value=" <?= $_SESSION['auth_user']['user_studentId'] ?> " />
+                                    <input type="file" id="image" name="image" accept=".jpg, .png, .jpeg"/>
+                                    <p id="status"></p>
                                 </div>
                             </div>
-                        </div>
+
+                  
+                   </div>
                         <div class="bio-info">
                             <div class="infos">
                                 <div class="inputs">
+                                <input type="hidden" name="studentUserId" value="<?= $_SESSION['auth_user']['user_studentId']?>" >
                                     <label>Surname <span>*</span>:</label>
-                                    <input type="text" name="" placeholder="e.g: Osei" required>
+                                    <input type="text" name="surename" value="<?= isset($row['surename']) ?$row['surename']:'' ?>" placeholder="eg .Danku" required>
                                 </div>
                                 <div class="inputs">
                                     <label>Other Names <span>*</span>:</label>
-                                    <input type="text" name="" placeholder="e.g: Obed Kwame" required>
+                                    <input type="text" name="othername" value="<?= isset($row['othername']) ?$row['othername']:'' ?>" placeholder="e.g: Kennedy Edem" required>
                                 </div>
                                 <div class="inputs">
                                     <label>Gender <span>*</span>:</label>
                                     <select name="gender" id="" required>
-                                        <option value="Select gender">Select gender</option>
+                                        <option value="<?= $row['gender'] ?>"><?= isset($row['gender']) ? $row['gender'] :'' ?></option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
                                 </div>
                                 <div class="inputs">
                                     <label>Date of Birth <span>*</span>:</label>
-                                    <input type="date" name="" placeholder="e.g: Obed Kwame" required>
+                                    <input type="date" name="dob" value="<?= isset($row['dob']) ? $row['dob']: '' ?>" required>
                                 </div>
                                 <div class="inputs">
                                     <label>Country Code <span>*</span>:</label>
-                                    <select name="countryCode" id="">
-                                        <option value="-- Select Country of Residence --">-- Select Country Code --</option>
+                                    <select name="code" id="">
+                                        <option value="<?= $row['code'] ?>"><?= isset($row['code']) ?$row['code']:'-- Select Country Code --' ?></option>
                                             <option data-countryCode="DZ" value="213">Algeria (+213)</option>
                                             <option data-countryCode="AD" value="376">Andorra (+376)</option>
                                             <option data-countryCode="AO" value="244">Angola (+244)</option>
@@ -290,12 +391,12 @@
                                 </div>
                                 <div class="inputs">
                                     <label>Phone Number <span>*</span>:</label>
-                                    <input type="text" name="" placeholder="(+233) 24 604 4481" required>
+                                    <input type="text" name="number" value="<?= isset($row['number']) ? $row['number']:'' ?>" placeholder="(+233) 24 604 4481" required>
                                 </div>
                                 <div class="inputs">
                                     <label>Country of Residence <span>*</span>:</label>
                                     <select id="country" name="country" class="form-control" required>
-                                        <option value="-- Select Country of Residence --">-- Select Country of Residence --</option>
+                                        <option value="<?= $row['country'] ?>"><?= isset($row['country']) ? $row['country']: '-- Select Country of Residence --' ?></option>
                                         <option value="Afghanistan">Afghanistan</option>
                                         <option value="Åland Islands">Åland Islands</option>
                                         <option value="Albania">Albania</option>
@@ -544,16 +645,17 @@
                                 </div>
                                 <div class="inputs">
                                     <label>Residential Address <span>*</span>:</label>
-                                    <input type="text" name="" placeholder="" required>
+                                    <input type="text" name="address" value="<?= isset($row['address'])?$row['address']:'' ?>"  placeholder="GD-269, F224, 4680 BARBET ST, Amrahia" required>
                                 </div>
                                 <div class="inputs">
                                     <label>Postal Address <span>*</span>:</label>
-                                    <input type="text" name="" placeholder="" required>
+                                    <input type="text" name="postAddress" value="<?= isset($row['postAddress']) ? $row['postAddress']: '' ?>" placeholder="eg P . O BOX 234 Accra" required>
                                 </div>
                             </div>
                             <div class="actions">
-                                <button>Previous</button>
-                                <button>Next</button>
+                                <button type="submit" name="personal">Save</button>
+                                <button type="button" onclick="window.location.href='dashboard.php';">Previous</button>
+                                <button type="button" onclick="window.location.href='identification.php';">Next</button>
                             </div>
                         </div>
                     </form>
@@ -561,6 +663,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 <?php include "../includes/stu-footer.php" ?>

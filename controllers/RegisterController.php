@@ -1,5 +1,6 @@
 <?php
-// class for registeration
+// class for registration
+//include_once('../config/DatabaseConnection.php');
 class RegisterController{
 
     public function __construct()
@@ -8,22 +9,23 @@ class RegisterController{
         $this->conn = $db->conn;
     }
 
-    //register new staff
-    public function staffRegistration($staffId,$pin)
-    {
-        $register_query="INSERT INTO staff (staffId,pin) VALUES('$staffId','$pin')";
-        $result = $this->conn->query($register_query);
-        return $result;
-    }
-
+   
     //register new Applicant
-    public function applicantRegistration($studentId,$email,$password,$number)
+    public function applicantRegister($studentId,$email,$password,$number)
     {
-        $register_query="INSERT INTO applicants(studentId,email,password,number) VALUES('$studentId','$email','$password','$number')";
-        $result = $this->conn->query($register_query);
+        $regQuery="INSERT INTO applicants(studentId,email,password,number) VALUES('$studentId','$email','$password','$number')";
+        $result = $this->conn->query($regQuery);
         return $result;
     }
 
+     //register new staff
+     public function staffRegistration($staffId,$pin)
+     {
+         $register_query="INSERT INTO staff (staffId,pin) VALUES('$staffId','$pin')";
+         $result = $this->conn->query($register_query);
+         return $result;
+     }
+ 
     //Checking where both password matches.
     public function confirmPassword($password,$repassword)
     {
@@ -170,7 +172,7 @@ class RegisterController{
     //checking Whether contact entered existed
     public function isNumberExist($number)
     {
-        $checkUserNumber="SELECT number FROM applicant WHERE number='$number' LIMIT 1";
+        $checkUserNumber="SELECT number FROM applicants WHERE number='$number' LIMIT 1";
         $result=$this->conn->query($checkUserNumber);
         if($result->num_rows > 0)
         {
@@ -182,7 +184,7 @@ class RegisterController{
 
     //Check whether Email Existed
     public function checkEmail($email){
-        $checkUserEmail="SELECT email FROM applicant WHERE email='$email' LIMIT 1";
+        $checkUserEmail="SELECT email FROM applicants WHERE email='$email' LIMIT 1";
         $result=$this->conn->query($checkUserEmail);
         if($result->num_rows >0){
             return false;

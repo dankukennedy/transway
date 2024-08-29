@@ -1,17 +1,19 @@
 <?php $current_page = basename($_SERVER['PHP_SELF']); ?>
+
 <?php include('../config/app.php');
 
 include_once('../controllers/AuthenticationController.php');
+include_once('../controllers/TransRequest.php');
 include_once('../controllers/IdentificationController.php');
 include_once('../controllers/ProgrammeController.php');
 include_once('../controllers/PersonalController.php');
 include_once('../controllers/TransRequest.php');
-
 $authenticated=new AuthenticationController;
-$data = $authenticated->authUserDetail();
+$data = $authenticated->authStaffDetail();
 ?>
-
 <?php include "../includes/stu-header.php" ?>
+
+
 
 <div class="sdashboard">
     <div class="sidebar-content">
@@ -28,13 +30,13 @@ $data = $authenticated->authUserDetail();
         <div class="main-content">
             <div class="header">
             <div class="header-content" style="display: flex; justify-content: space-between;">
-                    <span>Email: <?= $_SESSION['auth_user']['user_email'] ?></span>
+            <span>Staff Email: <?= $_SESSION['auth_staff']['staff_email'] ?></span>
                      <span ></span><span >&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
                      <span >&nbsp;&nbsp;&nbsp;</span><span >&nbsp;&nbsp;&nbsp;</span>
                      <span >&nbsp;&nbsp;&nbsp;</span><span >&nbsp;&nbsp;&nbsp;</span>
                      <span >&nbsp;&nbsp;&nbsp;</span><span >&nbsp;&nbsp;&nbsp;</span>
                      <span >&nbsp;&nbsp;&nbsp;</span><span >&nbsp;&nbsp;&nbsp;</span>
-                     <span style="float:right;">Student ID: <?= $_SESSION['auth_user']['user_studentId'] ?></span>
+                     <span style="float:right;">Staff ID: <?= $_SESSION['auth_staff']['staff_staffUserId'] ?></span>
                      <div class="profile-pic">
                         <img src="../images/stud.JPG" alt="">
                     </div>
@@ -46,7 +48,7 @@ $data = $authenticated->authUserDetail();
                         <h5>Programme(s)</h5>
                         <?php  include('../includes/psms.php'); ?>
                     </div>
-                    <form  action="../code/authentication_code.php" method="POST">
+                    <form  action="#" >
                         <div class="bio-info">
                             <div class="propic-info">
                                 <div class="pro-pic">
@@ -55,8 +57,11 @@ $data = $authenticated->authUserDetail();
                                 <div class="review-info">
                                     <div class="questions">
                                         <h4>Personal Information</h4>
+                                        <?=isset($_GET['studentUserId'])? $_GET['studentUserId']:"Error Passed" ?>
+                                           <?php  $studentUserId = $_GET['studentUserId']; ?>
+
                                         <?php
-                                           $studentUserId = $_SESSION['auth_user']['user_studentId'];
+                                           $studentUserId= $_GET['studentUserId'];
                                             $personal = new PersonalController;
                                             $result = $personal->Index($studentUserId);
 
@@ -99,7 +104,7 @@ $data = $authenticated->authUserDetail();
                                     <div class="questions">
                                         <h4>Identification</h4>
                                         <?php
-                                        $studentUserId = $_SESSION['auth_user']['user_studentId'];
+                                        $studentUserId =$_GET['studentUserId'];
                                         $identity = new IdentificationController;
                                         $result = $identity->index($studentUserId);
 
@@ -119,7 +124,7 @@ $data = $authenticated->authUserDetail();
                                     <div class="questions">
                                         <h4>Programme(s)</h4>
                                         <?php
-                                        $studentUserId = $_SESSION['auth_user']['user_studentId'];
+                                        $studentUserId= $_GET['studentUserId'];
                                             $program = new ProgrammeController;
                                             $result = $program->Index($studentUserId);
 
@@ -161,24 +166,7 @@ $data = $authenticated->authUserDetail();
                                     </div>
                                 </div>
                             </div>
-                            <div class="actions">
-
-                                <div class="infos">
-                                 <div class="inputs">
-                                    <label>Number of Transcript <span>*</span>:</label>
-                                    <input type="hidden"  name="studentUserId" value=" <?=$_SESSION['auth_user']['user_studentId']?>">
-                                    <input type="hidden"  name="email" value="<?= $_SESSION['auth_user']['user_email'] ?>">
-                                    <input type="hidden"  name="contact" value="<?=$_SESSION['auth_user']['user_number'] ?>">
-                                    <input type="number"  name="tNumber" placeholder="No.Transcript" required>
-                                    <input type="hidden"  name="programme" value="<?= isset($pro['programme']) ? $pro['programme']:'' ?>">
-                                    <input type="hidden"  name="graduationYear" value="<?= isset($pro['graduationYear']) ? $pro['graduationYear']:'' ?>">
-                                 </div>
-                                </div>
-
-                                <button type="button" onclick="window.location.href='programmes.php';"> Previous </button>
-                                <button type="submit" name="trans"> Req Transcript </button>
-
-                            </div>
+                           
                         </div>
                     </form>
                 </div>

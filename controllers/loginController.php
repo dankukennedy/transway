@@ -1,26 +1,28 @@
 <?php
-class loginController
+include_once('../config/DatabaseConnection.php');
+class loginController 
 {
-  
-  public function __construct(){
-    $db = new DatabaseConnection;
-    $this-> conn = $db->conn;
 
-}
-
-        public function applicantAccount($email)
-         {
-              $checkLogin = "SELECT * FROM applicants WHERE email ='$email' LIMIT 1";
-              $result = $this->conn->query($checkLogin);
-                if($result->num_rows < 1)
-                  {
-                    return false;
-                  }
+public function __construct(){
+     $db = new DatabaseConnection;
+     $this-> conn = $db->conn;
        }
 
-        public function staffAccount($staffId)
+  
+       public function applicantAccount($email)
+       { 
+            $checkLogin="SELECT * FROM applicants WHERE email='$email' LIMIT 1";
+            $result=$this->conn->query($checkLogin);
+            if($result->num_rows < 1)
+            {
+               return false;
+            }
+
+       }
+
+        public function staffAccount($staffUserId)
          {
-              $checkLogin="SELECT * FROM staff WHERE staffId ='staffId' LIMIT 1";
+              $checkLogin="SELECT * FROM staff WHERE staffUserId ='$staffUserId' LIMIT 1";
               $result=$this->conn->query($checkLogin);
               if($result->num_rows < 1)
                  {
@@ -47,23 +49,20 @@ class loginController
         }
     }
 
-    public function staffLogin($staffId,$pin){
-      $staffLogin="SELECT * FROM staff WHERE staffId ='$staffId' LIMIT 1";
+    public function staffLogin($staffUserId,$pin){
+      $staffLogin="SELECT * FROM staff WHERE staffUserId='$staffUserId' LIMIT 1";
       $result = $this->conn->query($staffLogin);
-      if($result->num_rows > 0){
-        if($data = $result->fetch_assoc()){
-          $pin === $data['pin'];
-          if( $pin == false){
-            return false;
-          }elseif( $pin){
+      if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
+        if ($pin === $data['pin']) {
             $this->staffAuthentication($data);
             return true;
-          }
+        } else {
+            return false;
         }
-      }
-      else {
+    } else {
         return false;
-      }
+    }
     }
 
 
@@ -83,15 +82,17 @@ class loginController
     {
         $_SESSION['authenticated'] = true;
         //$_SESSION['auth_role']= $data['role_as'];
-        $_SESSION['auth_user']=[
-        'staff_id'=>$data['staffId'],
-        'staff_pin'=>$data['pin']
+        $_SESSION['auth_staff']=[
+        'staff_id'=>$data['id'],
+        'staff_staffUserId'=>$data['staffUserId'],
+        'staff_email'=>$data['email'],
+        'staff_number'=>$data['number']
         ];
     }
 
       public function isLoggedIn(){
         if(isset($_SESSION['authenticated']) === TRUE){
-         redirect("<h4 style='color:red;' >You are Already LoggedIn</h4>","dashboard.php");
+         redirect("<h4 style='color:red;' >You are Already LoggedIn</h4>","student\index.php");
         }
         else{
             return false;
@@ -100,7 +101,7 @@ class loginController
 
       public function isLoggedInStaff(){
         if(isset($_SESSION['authenticated']) === TRUE){
-         redirect("<h4 style='color:red;' >You are Already LoggedIn</h4>","dashboard.php");
+         redirect("<h4 style='color:red;' >You are Already LoggedIn</h4>","admin\dashboard.php");
         }
         else{
             return false;

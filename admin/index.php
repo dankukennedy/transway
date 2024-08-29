@@ -10,10 +10,10 @@
             </div>
             <h3>Transcript Request System</h3>
             <?php  include('../includes/message.php'); ?>
-            <form action="" method ="POST">
-                <input type="text" name="staffId" placeholder="Staff ID" required>
-                <input type="password" name="pin"placeholder="Pin" required>
-                <button>Login</button>
+            <form action="../code/authentication_code.php" method ="POST">
+                <input type="text" name="staffUserId" placeholder="Staff ID" required>
+                <input type="password" name="pin" placeholder="Pin" required>
+                <button type="submit" name="login_staff">Login</button>
                 <div class="links">
                 <span> <a href="../index.php">Student Login</a></span>
                 </div>

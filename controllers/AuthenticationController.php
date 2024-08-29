@@ -11,14 +11,14 @@ class AuthenticationController
     public function staff()
     {
        $staff_id = $_SESSION['auth_staff']['staff_id'];
-       $checkStaff = "SELECT id, role_as FROM staffs WHERE id='$staff_id' AND role_as='1' LIMIT 1";
+       $checkStaff = "SELECT * FROM staffs WHERE id='$staff_id'  LIMIT 1";
        $result=$this->conn->query($checkStaff);
        if($result->num_rows == 1)
         {
            return true;
         } else
          {
-          redirect("<h4 style='color:red;'>You are not Authorized as Admin</h4>","login.php");
+          redirect("<h3 style='color:red;'> <script>alert('You are not Authorized as Admin')</script>You are not Authorized as Admin</h3>","login.php");
            return false;
          }
     }
@@ -29,7 +29,7 @@ class AuthenticationController
         $checkAuth=$this->checkIsLoggedIn();
         if($checkAuth)
         {
-          $applicant_id = $_SESSION['auth_applicant']['applicant_id'];
+          $applicant_id = $_SESSION['auth_user']['user_id'];
           $getUserData=" SELECT * FROM applicants WHERE id ='$applicant_id' LIMIT 1";
           $result=$this->conn->query($getUserData);
             if($result->num_rows > 0)
@@ -38,7 +38,7 @@ class AuthenticationController
                 return $data;
              }
            else{
-             redirect("<h4 style='color:red;'>Something Went wong </h4>","index.php");
+             redirect("<h3 style='color:red;'><script>alert('Something Went wong')</script>Something Went wong </h3>","index.php");
             }
         } else{
             return false;
@@ -51,15 +51,15 @@ class AuthenticationController
         if($checkAuth)
         {
           $staff_id = $_SESSION['auth_staff']['staff_id'];
-          $getUserData =" SELECT * FROM staff WHERE id ='$staff_id' LIMIT 1";
-          $result = $this->conn->query($getUserData);
+          $getStaffData =" SELECT * FROM staff WHERE id ='$staff_id' LIMIT 1";
+          $result = $this->conn->query($getStaffData);
             if($result->num_rows > 0)
              {
                 $data=$result->fetch_assoc();
                 return $data;
              }
            else{
-             redirect("<h4 style='color:red;'>Something Went wong </h4>","index.php");
+             redirect("<h3 style='color:red;'><script>alert('Something Went wong ')</script>Something Went wong </h3>","index.php");
             }
         } else{
             return false;
@@ -71,7 +71,7 @@ class AuthenticationController
     {
        if(!isset($_SESSION['authenticated']))
        {
-            redirect("<h4 style='color:red;' >Login to Access the page</h4>","index.php");
+            redirect("<h3 style='color:red;' ><script>alert('Login to Access the page')</script>Login to Access the page</h3>","index.php");
             return false;
        } else{
            return true;
@@ -83,7 +83,7 @@ class AuthenticationController
     {
        if(!isset($_SESSION['authenticated']))
        {
-            redirect("<h4 style='color:red;' >Login to Access the page</h4>","index.php");
+            redirect("<h3 style='color:red;' ><script>alert('Login to Access the page')</script>Login to Access the page</h3>","index.php");
             return false;
        } else{
            return true;
@@ -95,6 +95,6 @@ class AuthenticationController
 
  }
 
- $authenticated=new AuthenticationController;
+ $authenticated = new AuthenticationController;
 
 ?>

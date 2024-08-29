@@ -55,13 +55,13 @@
 
    }
 
-   public function updateStaff($staffId,$pin,$id)
+   public function updateStaff($staffUserId,$pin,$id)
    {
      $user_id = validateInput($this->conn,$id);
-     $staffId = validateInput($this->conn,$_POST['staffId']); 
+     $staffUserId = validateInput($this->conn,$_POST['staffId']); 
      $pin = validateInput($this->conn,$_POST['$pin']); 
 
-    $userUpdateQuery=" UPDATE staff SET staffId ='$staffId',pin ='$pin'  WHERE id ='$user_id' LIMIT 1";
+    $userUpdateQuery=" UPDATE staff SET staffUserId ='$staffUserId',pin ='$pin'  WHERE id ='$user_id' LIMIT 1";
     $result=$this->conn->query($userUpdateQuery);
     if($result)
      { 
